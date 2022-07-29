@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Ejecutor {
 
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
     Scanner entrada = new Scanner(System.in);
         int op = 0;
@@ -33,17 +34,15 @@ public class Ejecutor {
         PlanPostPagoMinutosMegasEconomico pppmme1
                 = new PlanPostPagoMinutosMegasEconomico();
         ArrayList<PlanPostPagoMinutosMegasEconomico> listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
-        do {
-            
-            opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(""
+       do {
+            try {
+                opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(""
                     + "\tPLAN CELULAR\t\n"
                     + "[1] Crear tipos plan celular: \n"
                     + "[2] Mostrar datos\n"
                     + "[3] Salir\n\n"
                     + "Escoja una opcion valida: ?"));
-         
-
-            if (opcion_menu == 1) {
+                if (opcion_menu == 1) {
                 opcion_menuPlnes = Integer.parseInt(JOptionPane.showInputDialog(""
                     + "\tElija el tipo de plan celular\t\n"
                     + "[1] Plan Post Pago Megas: \n"
@@ -52,10 +51,10 @@ public class Ejecutor {
                         + "[4] Plan Post Pago Minutos Megas Economico\n"
                     + "[5] Salir\n\n"
                     + "Escoja una opcion valida: ?"));
-                
-                switch (opcion_menuPlnes) {
+
+                switch (opcion_menu) {
                     case 1:
-                          pppm1 = new PlanPostPagoMegas();
+                         pppm1 = new PlanPostPagoMegas();
                         nombre = JOptionPane.showInputDialog("Ingrese nombre:");
                         pppm1.establecerNombrePropietario(nombre);
                          cedula = JOptionPane.showInputDialog("Ingrese cedula:");
@@ -84,13 +83,9 @@ public class Ejecutor {
                         pppm1.establecerTarifaBase(Double.parseDouble(tb));
                         pppm1.calcularPagomensual();
                         plan.insertarPlanPostPagoMegas(pppm1);
-
-                      
-
-
                         break;
                     case 2:
-                         ppgm1 = new PlanPostPagoMinutos();
+                       ppgm1 = new PlanPostPagoMinutos();
                         nombre = JOptionPane.showInputDialog("Ingrese nombre:");
                         ppgm1.establecerNombrePropietario(nombre);
                          cedula = JOptionPane.showInputDialog("Ingrese cedula:");
@@ -160,7 +155,7 @@ public class Ejecutor {
                         
                         break;
                     case 4:
-                         pppmme1 = new PlanPostPagoMinutosMegasEconomico();
+                        pppmme1 = new PlanPostPagoMinutosMegasEconomico();
                         nombre = JOptionPane.showInputDialog("Ingrese nombre:");
                         pppmme1.establecerNombrePropietario(nombre);
                          cedula = JOptionPane.showInputDialog("Ingrese cedula:");
@@ -192,15 +187,15 @@ public class Ejecutor {
                         pppmme1.calcularPagomensual();
                         plan.insertarPlanPostPagoMinutosMegasEconomico(pppmme1);
 
-                       
+                    case 5:
+                        System.exit(0);
                         break;
-
                     default:
-                        JOptionPane.showMessageDialog(null, 
+                       JOptionPane.showMessageDialog(null, 
                                 "No existe el plan a crear", 
                                 "Plan Celular", JOptionPane.WARNING_MESSAGE);
-                       
                 }
+            
             }
             if (opcion_menu == 2) {
                 System.out.println("Planes Post Pago Megas");
@@ -231,12 +226,21 @@ public class Ejecutor {
                 }
                 listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
             }
-
-        } while (opcion_menu>3);
-        JOptionPane.showMessageDialog(null, 
-                                "Desea Salir?", 
-                                "Plan Celular", JOptionPane.WARNING_MESSAGE);
-
-    }   
-
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "¡Dato valido!");
+            }
+        } while (opcion_menu != 4);
+    }
 }
+     
+       
+
+        
+                 
+                       
+                
+            
+            
+       
+       
+
