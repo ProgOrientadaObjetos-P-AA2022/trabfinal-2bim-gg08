@@ -22,12 +22,12 @@ public class EnlacePlan {
     public void establecerConexion() {
 
         try {
-            // db parameters  
+             // db parameters  
             String url = "jdbc:sqlite:bd/baseplancelular.db";
-            // create a connection to the database  
+              // create a connection to the database  
             conn = DriverManager.getConnection(url);
-            // System.out.println(conn.isClosed());
-            // System.out.println("Connection to SQLite has been established.");  
+               // System.out.println(conn.isClosed());
+            // System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -44,13 +44,14 @@ public class EnlacePlan {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planpostpagomegas (nombre, "
-                    + "cedula, ciudad, modelo, marca, numerocelular, cantidadgb,"
-                    + " costogb, tarifabase, pagoplan ) "
-                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s);",
-                    pppm.obtenerPropietario().obtenerNombre(),
-                    pppm.obtenerPropietario().obtenerIdentidad(),
-                    pppm.obtenerPropietario().obtenerIdentidad(),
+            String data = String.format("INSERT INTO planpostpagomegas "
+                    + "(nombre, cedula, ciudad, modelo, marca, numerocelular,"
+                    + " cantidadgb, costogb, tarifabase, pagoplan ) "
+                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, "
+                    + "%s, %s);",
+                    pppm.obtenerNombrePropietario(),
+                    pppm.obtenerCedula(),
+                    pppm.obtenerCiudad(),
                     pppm.obtenerModelo(),
                     pppm.obtenerMarca(),
                     pppm.obtenerNumerocelular(),
@@ -74,15 +75,15 @@ public class EnlacePlan {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
             String data = String.format("INSERT INTO planpostpagominutos "
-                    + "(nombre, cedula, ciudad, modelo, marca, numerocelular, "
-                    + "minutosNacionales, costoMinutoNacional,"
-                    + " minutosInternacionales, costoMinutoInternacional,"
-                    + " pagoplan ) "
-                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s,"
-                    + " %s, %s);",
-                    pppmi.obtenerPropietario().obtenerNombre(),
-                    pppmi.obtenerPropietario().obtenerIdentidad(),
-                    pppmi.obtenerPropietario().obtenerCiudad(),
+                    + "(nombre, cedula, ciudad, modelo, marca, numerocelular,"
+                    + " minutosNacionales, costoMinutoNacional, "
+                    + "minutosInternacionales, costoMinutoInternacional, "
+                    + "pagoplan ) "
+                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s,"
+                    + " %s, %s, %s);",
+                    pppmi.obtenerNombrePropietario(),
+                    pppmi.obtenerCedula(),
+                    pppmi.obtenerCiudad(),
                     pppmi.obtenerModelo(),
                     pppmi.obtenerMarca(),
                     pppmi.obtenerNumerocelular(),
@@ -106,11 +107,14 @@ public class EnlacePlan {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planpostpagominutosmegas (nombre, cedula, ciudad, modelo, marca, numerocelular, minutos, costominutos, cantidadgb, costogb, pagoplan ) "
-                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s);",
-                    pppmm.obtenerPropietario().obtenerNombre(),
-                    pppmm.obtenerPropietario().obtenerIdentidad(),
-                    pppmm.obtenerPropietario().obtenerCiudad(),
+            String data = String.format("INSERT INTO planpostpagominutosmegas "
+                    + "(nombre, cedula, ciudad, modelo, marca, numerocelular,"
+                    + " minutos, costominutos, cantidadgb, costogb, pagoplan ) "
+                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s,"
+                    + " %s, %s);",
+                    pppmm.obtenerNombrePropietario(),
+                    pppmm.obtenerCedula(),
+                    pppmm.obtenerCiudad(),
                     pppmm.obtenerModelo(),
                     pppmm.obtenerMarca(),
                     pppmm.obtenerNumerocelular(),
@@ -134,11 +138,16 @@ public class EnlacePlan {
            
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planpostpagominutosmegaseconomico (nombre, cedula, ciudad, modelo, marca, numerocelular, minutos, costominutos, cantidadgb, costogb, porcentajedescuento, pagoplan ) "
-                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s, %s);",
-                    pppmme.obtenerPropietario().obtenerNombre(),
-                    pppmme.obtenerPropietario().obtenerIdentidad(),
-                    pppmme.obtenerPropietario().obtenerCiudad(),
+            String data = String.format("INSERT INTO "
+                    + "planpostpagominutosmegaseconomico (nombre, cedula, "
+                    + "ciudad, modelo, marca, numerocelular, minutos, "
+                    + "costominutos, cantidadgb, costogb, porcentajedescuento, "
+                    + "pagoplan ) "
+                    + "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s,"
+                    + " %s, %s, %s);",
+                    pppmme.obtenerNombrePropietario(),
+                    pppmme.obtenerCedula(),
+                    pppmme.obtenerCiudad(),
                     pppmme.obtenerModelo(),
                     pppmme.obtenerMarca(),
                     pppmme.obtenerNumerocelular(),
@@ -169,9 +178,9 @@ public class EnlacePlan {
 
                 PlanPostPagoMinutos pppmi = new PlanPostPagoMinutos();
 
-                pppmi.propietario.establecerNombre(rs.getString("nombre"));
-                pppmi.propietario.establecerIdentidad(rs.getInt("cedula"));
-                pppmi.propietario.establecerCiudad(rs.getString("ciudad"));
+                pppmi.establecerNombrePropietario(rs.getString("nombre"));
+                pppmi.establecerCedula(rs.getString("cedula"));
+                pppmi.establecerCiudad(rs.getString("ciudad"));
                 pppmi.establecerModelo(rs.getString("modelo"));
                 pppmi.establecerMarca(rs.getString("marca"));
                 pppmi.establecerNumerocelular(rs.getString("numerocelular"));
@@ -204,9 +213,9 @@ public class EnlacePlan {
 
                 PlanPostPagoMegas pppm = new PlanPostPagoMegas();
 
-                pppm.propietario.establecerNombre(rs.getString("nombre"));
-                pppm.propietario.establecerIdentidad(rs.getInt("cedula"));
-                pppm.propietario.establecerCiudad(rs.getString("ciudad"));
+                pppm.establecerNombrePropietario(rs.getString("nombre"));
+                pppm.establecerCedula(rs.getString("cedula"));
+                pppm.establecerCiudad(rs.getString("ciudad"));
                 pppm.establecerModelo(rs.getString("modelo"));
                 pppm.establecerMarca(rs.getString("marca"));
                 pppm.establecerNumerocelular(rs.getString("numerocelular"));
@@ -236,9 +245,9 @@ public class EnlacePlan {
 
                 PlanPostPagoMinutosMegas pppmm = new PlanPostPagoMinutosMegas();
 
-                pppmm.propietario.establecerNombre(rs.getString("nombre"));
-                pppmm.propietario.establecerIdentidad(rs.getInt("cedula"));
-                pppmm.propietario.establecerCiudad(rs.getString("ciudad"));
+                pppmm.establecerNombrePropietario(rs.getString("nombre"));
+                pppmm.establecerCedula(rs.getString("cedula"));
+                pppmm.establecerCiudad(rs.getString("ciudad"));
                 pppmm.establecerModelo(rs.getString("modelo"));
                 pppmm.establecerMarca(rs.getString("marca"));
                 pppmm.establecerNumerocelular(rs.getString("numerocelular"));
@@ -259,10 +268,8 @@ public class EnlacePlan {
         }
         return listaPlanPostPagoMinutosMegas;
     }
-    public ArrayList<PlanPostPagoMinutosMegasEconomico> 
-        obtenerDataPlanPostPagoMinutosMegasEconomico() {
-        ArrayList<PlanPostPagoMinutosMegasEconomico> 
-                listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
+    public ArrayList<PlanPostPagoMinutosMegasEconomico> obtenerDataPlanPostPagoMinutosMegasEconomico() {
+        ArrayList<PlanPostPagoMinutosMegasEconomico> listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
@@ -271,12 +278,11 @@ public class EnlacePlan {
             ResultSet rs = statement.executeQuery(data);
             while (rs.next()) {
 
-                PlanPostPagoMinutosMegasEconomico pppmme = new 
-        PlanPostPagoMinutosMegasEconomico();
+                PlanPostPagoMinutosMegasEconomico pppmme = new PlanPostPagoMinutosMegasEconomico();
 
-                pppmme.propietario.establecerNombre(rs.getString("nombre"));
-                pppmme.propietario.establecerIdentidad(rs.getInt("cedula"));
-                pppmme.propietario.establecerCiudad(rs.getString("ciudad"));
+                pppmme.establecerNombrePropietario(rs.getString("nombre"));
+                pppmme.establecerCedula(rs.getString("cedula"));
+                pppmme.establecerCiudad(rs.getString("ciudad"));
                 pppmme.establecerModelo(rs.getString("modelo"));
                 pppmme.establecerMarca(rs.getString("marca"));
                 pppmme.establecerNumerocelular(rs.getString("numerocelular"));

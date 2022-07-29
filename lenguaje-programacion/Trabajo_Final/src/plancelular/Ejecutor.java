@@ -18,7 +18,9 @@ public class Ejecutor {
     Scanner entrada = new Scanner(System.in);
         int op = 0;
         int opCrear = 0;
-        String nombre;
+        String nombre,ciudad,numCelular,modelo,cedula, marca,mb,cg,tb,minN,cMin,
+                minI,cMinI,pDes;
+       
         EnlacePlan plan = new EnlacePlan();
          int opcion_menu = 0;
          int opcion_menuPlnes = 0;
@@ -32,6 +34,7 @@ public class Ejecutor {
                 = new PlanPostPagoMinutosMegasEconomico();
         ArrayList<PlanPostPagoMinutosMegasEconomico> listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
         do {
+            
             opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(""
                     + "\tPLAN CELULAR\t\n"
                     + "[1] Crear tipos plan celular: \n"
@@ -52,111 +55,144 @@ public class Ejecutor {
                 
                 switch (opcion_menuPlnes) {
                     case 1:
+                          pppm1 = new PlanPostPagoMegas();
+                        nombre = JOptionPane.showInputDialog("Ingrese nombre:");
+                        pppm1.establecerNombrePropietario(nombre);
+                         cedula = JOptionPane.showInputDialog("Ingrese cedula:");
+                        pppm1.establecerCedula(cedula);
+                        ciudad=JOptionPane.showInputDialog("Ingrese ciudad");
+                        pppm1.establecerCiudad(ciudad);
+                        modelo = JOptionPane.showInputDialog("Ingrese modelo de "
+                                + "celular");
+                        pppm1.establecerModelo(modelo);
+                        marca = JOptionPane.showInputDialog("Ingrese marca de"
+                                + "celular:");
+                        pppm1.establecerMarca(marca);
+                        numCelular=JOptionPane.showInputDialog("Ingrese numero "
+                                + "celular:");
                         
+                        pppm1.establecerNumerocelular(numCelular);
+                        
+                        mb = JOptionPane.showInputDialog("Ingrese la cantidad "
+                                + "mb en gigas");
+                        pppm1.establecerMegasGigas(Double.parseDouble(mb));
+                        cg =JOptionPane.showInputDialog("Ingrese el costo de giga");
+                
+                        pppm1.establecerCostoporGiga(Double.parseDouble( cg));
                       
-nombre = JOptionPane.showInputDialog("Escribe tu nombre");
-                        pppm1.propietario.establecerNombre(nombre);
-                        
-                        System.out.println("Ingrese cedula propietario");
-                        pppm1.propietario.establecerIdentidad(entrada.nextInt());
-                        System.out.println("Ingrese la ciudad");
-                        pppm1.propietario.establecerCiudad(entrada.nextLine());
-                        System.out.println("Ingrese modelo de celular");
-                        pppm1.establecerModelo(entrada.nextLine());
-                        System.out.println("Ingrese marca de celular");
-                        pppm1.establecerMarca(entrada.nextLine());
-                        System.out.println("Ingrese numero de celular");
-                        pppm1.establecerNumerocelular(entrada.nextLine());
-                        System.out.println("Ingrese la cantidad mb en gigas");
-                        pppm1.establecerMegasGigas(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese el costo de giga");
-                        pppm1.establecerCostoporGiga(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese la tarifa base");
-                        pppm1.establecerTarifaBase(Double.parseDouble(entrada.nextLine()));
+                        tb=JOptionPane.showInputDialog("Ingrese la tarifa base");
+                        pppm1.establecerTarifaBase(Double.parseDouble(tb));
                         pppm1.calcularPagomensual();
                         plan.insertarPlanPostPagoMegas(pppm1);
 
-                        pppm1 = new PlanPostPagoMegas();
+                      
 
 
                         break;
                     case 2:
-                        System.out.println("Ingrese nombre propietario");
-                        ppgm1.propietario.establecerNombre(entrada.nextLine());
-                        System.out.println("Ingrese cedula propietario");
-                        ppgm1.propietario.establecerIdentidad(entrada.nextInt());
-                        System.out.println("Ingrese la ciudad");
-                        ppgm1.propietario.establecerCiudad(entrada.nextLine());
-                        System.out.println("Ingrese modelo de celular");
-                        ppgm1.establecerMarca(entrada.nextLine());
-                        System.out.println("Ingrese marca de celular");
-                        ppgm1.establecerModelo(entrada.nextLine());
-                        System.out.println("Ingrese numero de celular");
-                        ppgm1.establecerNumerocelular(entrada.nextLine());
-                        System.out.println("Ingrese minutos nacionales");
-                        ppgm1.establecerMinutosNacionales(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese costo minuto nacional");
-                        ppgm1.establecerCostoMinutoNacional(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese minutos internacionales");
-                        ppgm1.establecerMinutosInternacionales(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese costo minuto internacional");
-                        ppgm1.establecerCostoMinutoInternacioanl(Double.parseDouble(entrada.nextLine()));
+                         ppgm1 = new PlanPostPagoMinutos();
+                        nombre = JOptionPane.showInputDialog("Ingrese nombre:");
+                        ppgm1.establecerNombrePropietario(nombre);
+                         cedula = JOptionPane.showInputDialog("Ingrese cedula:");
+                        ppgm1.establecerCedula(cedula);
+                        ciudad=JOptionPane.showInputDialog("Ingrese ciudad");
+                        ppgm1.establecerCiudad(ciudad);
+                        modelo = JOptionPane.showInputDialog("Ingrese modelo de "
+                                + "celular");
+                        ppgm1.establecerModelo(modelo);
+                        marca = JOptionPane.showInputDialog("Ingrese marca de"
+                                + "celular:");
+                        
+                        ppgm1.establecerModelo(marca);
+                         numCelular=JOptionPane.showInputDialog("Ingrese numero "
+                                + "celular:");
+                        ppgm1.establecerNumerocelular(numCelular);
+                        minN = JOptionPane.showInputDialog("Ingrese minutos "
+                                + "nacionales");
+                        ppgm1.establecerMinutosNacionales(Double.parseDouble(minN));
+                      
+                        cMin = JOptionPane.showInputDialog("Ingrese costo "
+                                + "minuto nacional");
+                        ppgm1.establecerCostoMinutoNacional(Double.parseDouble(cMin));
+                        
+                        minI=JOptionPane.showInputDialog("Ingrese minutos "
+                                + "internacionales");
+                      
+                        ppgm1.establecerMinutosInternacionales(Double.parseDouble(cMin));
+                        cMinI = JOptionPane.showInputDialog("Ingrese costo "
+                                + "minuto internacional");
+                       
+                        ppgm1.establecerCostoMinutoInternacioanl(Double.parseDouble(cMinI));
                         ppgm1.calcularPagomensual();
                         plan.insertarPlanPostPagoMinutos(ppgm1);
-                        ppgm1 = new PlanPostPagoMinutos();
+                       
                         break;
                     case 3:
-                        System.out.println("Ingrese nombre propietario");
-                        pppmm1.propietario.establecerNombre(entrada.nextLine());
-                        System.out.println("Ingrese cedula propietario");
-                        pppmm1.propietario.establecerIdentidad(entrada.nextInt());
-                        System.out.println("Ingrese la ciudad");
-                        pppmm1.propietario.establecerCiudad(entrada.nextLine());
-                        System.out.println("Ingrese modelo de celular");
-                        pppmm1.establecerModelo(entrada.nextLine());
-                        System.out.println("Ingrese marca de celular");
-                        pppmm1.establecerMarca(entrada.nextLine());
-                        System.out.println("Ingrese numero de celular");
-                        pppmm1.establecerNumerocelular(entrada.nextLine());
-                        System.out.println("Ingrese los minutos");
-                        pppmm1.establecerMinutos(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese costo de minutos");
-                        pppmm1.establecerCostoMinutos(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese cantidad mb en gigas");
-                        pppmm1.establecerMegasGigas(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese el costo de gb");
-                        pppmm1.establecerCostoporGiga(Double.parseDouble(entrada.nextLine()));
+                        pppmm1 = new PlanPostPagoMinutosMegas();
+                        nombre = JOptionPane.showInputDialog("Ingrese nombre:");
+                        pppmm1.establecerNombrePropietario(nombre);
+                         cedula = JOptionPane.showInputDialog("Ingrese cedula:");
+                        pppmm1.establecerCedula(cedula);
+                        ciudad=JOptionPane.showInputDialog("Ingrese ciudad");
+                        pppmm1.establecerCiudad(ciudad);
+                        modelo = JOptionPane.showInputDialog("Ingrese modelo de "
+                                + "celular");
+                        pppmm1.establecerModelo(modelo);
+                        marca = JOptionPane.showInputDialog("Ingrese marca de"
+                                + "celular:");
+                        pppmm1.establecerMarca(marca);
+                        numCelular= JOptionPane.showInputDialog("Ingrese el "
+                                + "numero de celular:");
+                        pppmm1.establecerNumerocelular(numCelular);
+                        minN =JOptionPane.showInputDialog("Ingrese los minutos:");
+                        pppmm1.establecerMinutos(Double.parseDouble(minN));
+                        cMin= JOptionPane.showInputDialog("Ingrese costo de minutos");
+                        
+                        pppmm1.establecerCostoMinutos(Double.parseDouble(cMin));
+                        mb=JOptionPane.showInputDialog("Ingrese cantidad de mb"
+                                + " en gigas");
+                        pppmm1.establecerMegasGigas(Double.parseDouble(mb));
+                        cg=JOptionPane.showInputDialog("Ingrese el costo de gb");
+                        
+                        pppmm1.establecerCostoporGiga(Double.parseDouble(cg));
                         pppmm1.calcularPagomensual();
                         plan.insertarPlanPostPagoMinutosMegas(pppmm1);
-                        pppmm1 = new PlanPostPagoMinutosMegas();
+                        
                         break;
                     case 4:
-                        System.out.println("Ingrese nombre propietario");
-                        pppmme1.propietario.establecerNombre(entrada.nextLine());
-                        System.out.println("Ingrese cedula propietario");
-                        pppmme1.propietario.establecerIdentidad(entrada.nextInt());
-                        System.out.println("Ingrese la ciudad");
-                        pppmme1.propietario.establecerCiudad(entrada.nextLine());
-                        System.out.println("Ingrese modelo de celular");
-                        pppmme1.establecerModelo(entrada.nextLine());
-                        System.out.println("Ingrese marca de celular");
-                        pppmme1.establecerMarca(entrada.nextLine());
-                        System.out.println("Ingrese numero de celular");
-                        pppmme1.establecerNumerocelular(entrada.nextLine());
-                        System.out.println("Ingrese los minutos");
-                        pppmme1.establecerMinutos(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese costo de minutos");
-                        pppmme1.establecerCostoMinutos(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese cantidad mb en gigas");
-                        pppmme1.establecerMegasGigas(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese el costo de gb");
-                        pppmme1.establecerCostoGigas(Double.parseDouble(entrada.nextLine()));
-                        System.out.println("Ingrese el porcentaje de descuento");
-                        pppmme1.establecerPorcentajeDescuento(Double.parseDouble(entrada.nextLine()));
+                         pppmme1 = new PlanPostPagoMinutosMegasEconomico();
+                        nombre = JOptionPane.showInputDialog("Ingrese nombre:");
+                        pppmme1.establecerNombrePropietario(nombre);
+                         cedula = JOptionPane.showInputDialog("Ingrese cedula:");
+                        pppmme1.establecerCedula(cedula);
+                        ciudad=JOptionPane.showInputDialog("Ingrese ciudad");
+                        pppmme1.establecerCiudad(ciudad);
+                        modelo = JOptionPane.showInputDialog("Ingrese modelo de "
+                                + "celular");
+                        pppmme1.establecerModelo(modelo);
+                        marca = JOptionPane.showInputDialog("Ingrese marca de"
+                                + "celular:");
+                        pppmme1.establecerMarca(marca);
+                        numCelular= JOptionPane.showInputDialog("Ingrese el "
+                                + "numero de celular:");
+                        pppmm1.establecerNumerocelular(numCelular);
+                        minN =JOptionPane.showInputDialog("Ingrese los minutos:");
+                        pppmme1.establecerMinutos(Double.parseDouble(minN));
+                        cMin= JOptionPane.showInputDialog("Ingrese costo de minutos");
+                        
+                        pppmme1.establecerCostoMinutos(Double.parseDouble(cMin));
+                        mb=JOptionPane.showInputDialog("Ingrese cantidad de mb"
+                                + " en gigas");
+                        pppmme1.establecerMegasGigas(Double.parseDouble(mb));
+                        cg=JOptionPane.showInputDialog("Ingrese el costo de gb");
+                        pppmme1.establecerCostoGigas(Double.parseDouble(cg));
+                        pDes=JOptionPane.showInputDialog("Ingrese el porcentaje de descuento:");
+                       
+                        pppmme1.establecerPorcentajeDescuento(Double.parseDouble(pDes));
                         pppmme1.calcularPagomensual();
                         plan.insertarPlanPostPagoMinutosMegasEconomico(pppmme1);
 
-                        pppmme1 = new PlanPostPagoMinutosMegasEconomico();
+                       
                         break;
 
                     default:
@@ -166,7 +202,7 @@ nombre = JOptionPane.showInputDialog("Escribe tu nombre");
                        
                 }
             }
-            if (op == 2) {
+            if (opcion_menu == 2) {
                 System.out.println("Planes Post Pago Megas");
                 listaPlanPostPagoMegas = plan.obtenerDataPlanPostPagoMegas();
                 for (PlanPostPagoMegas p : listaPlanPostPagoMegas) {
@@ -196,7 +232,10 @@ nombre = JOptionPane.showInputDialog("Escribe tu nombre");
                 listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
             }
 
-        } while (op > 3);
+        } while (opcion_menu>3);
+        JOptionPane.showMessageDialog(null, 
+                                "Desea Salir?", 
+                                "Plan Celular", JOptionPane.WARNING_MESSAGE);
 
     }   
 
