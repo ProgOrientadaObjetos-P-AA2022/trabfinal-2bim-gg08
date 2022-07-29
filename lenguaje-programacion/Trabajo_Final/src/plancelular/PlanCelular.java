@@ -6,13 +6,12 @@ package plancelular;
 
 /**
  *
- * @author gilbertsolanosotomayor
+ * @author jeanpa
  */
 public abstract class PlanCelular {
 
-    protected String nombrePropietario;
-    protected String cedula;
-    protected String ciudad;
+    
+    protected Persona propietario;
     protected String marca;
     protected String modelo;
     protected String numerocelular;
@@ -22,17 +21,15 @@ public abstract class PlanCelular {
         
     }
 
-    public void establecerNombrePropietario(String nombrePropietario) {
-        this.nombrePropietario = nombrePropietario;
+    public Persona obtenerPropietario() {
+        return propietario;
     }
 
-    public void establecerCedula(String cedula) {
-        this.cedula = cedula;
+    public void establecerPropietario(Persona propietario) {
+        this.propietario = propietario;
     }
 
-    public void establecerCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
+    
 
     public void establecerMarca(String marca) {
         this.marca = marca;
@@ -46,17 +43,7 @@ public abstract class PlanCelular {
         this.numerocelular = numerocelular;
     }
 
-    public String obtenerNombrePropietario() {
-        return nombrePropietario;
-    }
-
-    public String obtenerCedula() {
-        return cedula;
-    }
-
-    public String obtenerCiudad() {
-        return ciudad;
-    }
+   
 
     public String obtenerMarca() {
         return marca;
@@ -82,9 +69,9 @@ public abstract class PlanCelular {
                 + "Marca:%s\n"
                 + "Modelo:%s\n"
                 + "Numero de celular:%s\n",
-                obtenerNombrePropietario(),
-                obtenerCedula(),
-                obtenerCiudad(),
+                obtenerPropietario().obtenerNombre(),
+                obtenerPropietario().obtenerIdentidad(),
+                obtenerPropietario().obtenerCiudad(),
                 obtenerMarca(),
                 obtenerModelo(),
                 obtenerNumerocelular());

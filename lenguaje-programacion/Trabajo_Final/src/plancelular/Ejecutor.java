@@ -6,7 +6,7 @@ package plancelular;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +18,10 @@ public class Ejecutor {
     Scanner entrada = new Scanner(System.in);
         int op = 0;
         int opCrear = 0;
+        String nombre;
         EnlacePlan plan = new EnlacePlan();
+         int opcion_menu = 0;
+         int opcion_menuPlnes = 0;
         PlanPostPagoMinutos ppgm1 = new PlanPostPagoMinutos();
         ArrayList<PlanPostPagoMinutos> listaPlanPostPagoMinutos = new ArrayList<>();
         PlanPostPagoMegas pppm1 = new PlanPostPagoMegas();
@@ -29,27 +32,35 @@ public class Ejecutor {
                 = new PlanPostPagoMinutosMegasEconomico();
         ArrayList<PlanPostPagoMinutosMegasEconomico> listaPlanPostPagoMinutosMegasEconomico = new ArrayList<>();
         do {
-            System.out.println("1. Crear Plan");
-            System.out.println("2. Mostrar Plan");
-            System.out.println("3. Salir");
-            op = Integer.parseInt(entrada.nextLine());
+            opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(""
+                    + "\tPLAN CELULAR\t\n"
+                    + "[1] Crear tipos plan celular: \n"
+                    + "[2] Mostrar datos\n"
+                    + "[3] Salir\n\n"
+                    + "Escoja una opcion valida: ?"));
+         
 
-            if (op == 1) {
-                System.out.println("--Seleccione Plan--");
-                System.out.println("1.Plan Post Pago Megas");
-                System.out.println("2.Plan Post Pago Minutos");
-                System.out.println("3.Plan Post Pago Minutos Megas");
-                System.out.println("4.Plan Post Pago Minutos Megas Economico");
-                opCrear = Integer.parseInt(entrada.nextLine());
-                switch (opCrear) {
+            if (opcion_menu == 1) {
+                opcion_menuPlnes = Integer.parseInt(JOptionPane.showInputDialog(""
+                    + "\tElija el tipo de plan celular\t\n"
+                    + "[1] Plan Post Pago Megas: \n"
+                    + "[2] Plan Post Pago Minutos\n"
+                        + "[3] Plan Post Pago Minutos Megas\n"
+                        + "[4] Plan Post Pago Minutos Megas Economico\n"
+                    + "[5] Salir\n\n"
+                    + "Escoja una opcion valida: ?"));
+                
+                switch (opcion_menuPlnes) {
                     case 1:
-                        System.out.println("Ingrese nombre propietario");
-                        pppm1.establecerNombrePropietario(entrada.nextLine());
-
+                        
+                      
+nombre = JOptionPane.showInputDialog("Escribe tu nombre");
+                        pppm1.propietario.establecerNombre(nombre);
+                        
                         System.out.println("Ingrese cedula propietario");
-                        pppm1.establecerCedula(entrada.nextLine());
+                        pppm1.propietario.establecerIdentidad(entrada.nextInt());
                         System.out.println("Ingrese la ciudad");
-                        pppm1.establecerCiudad(entrada.nextLine());
+                        pppm1.propietario.establecerCiudad(entrada.nextLine());
                         System.out.println("Ingrese modelo de celular");
                         pppm1.establecerModelo(entrada.nextLine());
                         System.out.println("Ingrese marca de celular");
@@ -67,25 +78,15 @@ public class Ejecutor {
 
                         pppm1 = new PlanPostPagoMegas();
 
-//                    pppm1.establecerNombrePropietario("Gilbert Solano");
-//                    pppm1.establecerCedula("1146659404");
-//                    pppm1.establecerCiudad("Cuenca");
-//                    pppm1.establecerModelo("8");
-//                    pppm1.establecerMarca("iphone");
-//                    pppm1.establecerNumerocelular("0987934783");
-//                    pppm1.establecerMegasGigas(10);
-//                    pppm1.establecerCostoporGiga(1);
-//                    pppm1.establecerTarifaBase(10);
-//                    pppm1.calcularPagomensual();
-//                    plan.insertarPlanPostPagoMegas(pppm1);
+
                         break;
                     case 2:
                         System.out.println("Ingrese nombre propietario");
-                        ppgm1.establecerNombrePropietario(entrada.nextLine());
+                        ppgm1.propietario.establecerNombre(entrada.nextLine());
                         System.out.println("Ingrese cedula propietario");
-                        ppgm1.establecerCedula(entrada.nextLine());
+                        ppgm1.propietario.establecerIdentidad(entrada.nextInt());
                         System.out.println("Ingrese la ciudad");
-                        ppgm1.establecerCiudad(entrada.nextLine());
+                        ppgm1.propietario.establecerCiudad(entrada.nextLine());
                         System.out.println("Ingrese modelo de celular");
                         ppgm1.establecerMarca(entrada.nextLine());
                         System.out.println("Ingrese marca de celular");
@@ -106,11 +107,11 @@ public class Ejecutor {
                         break;
                     case 3:
                         System.out.println("Ingrese nombre propietario");
-                        pppmm1.establecerNombrePropietario(entrada.nextLine());
+                        pppmm1.propietario.establecerNombre(entrada.nextLine());
                         System.out.println("Ingrese cedula propietario");
-                        pppmm1.establecerCedula(entrada.nextLine());
+                        pppmm1.propietario.establecerIdentidad(entrada.nextInt());
                         System.out.println("Ingrese la ciudad");
-                        pppmm1.establecerCiudad(entrada.nextLine());
+                        pppmm1.propietario.establecerCiudad(entrada.nextLine());
                         System.out.println("Ingrese modelo de celular");
                         pppmm1.establecerModelo(entrada.nextLine());
                         System.out.println("Ingrese marca de celular");
@@ -131,11 +132,11 @@ public class Ejecutor {
                         break;
                     case 4:
                         System.out.println("Ingrese nombre propietario");
-                        pppmme1.establecerNombrePropietario(entrada.nextLine());
+                        pppmme1.propietario.establecerNombre(entrada.nextLine());
                         System.out.println("Ingrese cedula propietario");
-                        pppmme1.establecerCedula(entrada.nextLine());
+                        pppmme1.propietario.establecerIdentidad(entrada.nextInt());
                         System.out.println("Ingrese la ciudad");
-                        pppmme1.establecerCiudad(entrada.nextLine());
+                        pppmme1.propietario.establecerCiudad(entrada.nextLine());
                         System.out.println("Ingrese modelo de celular");
                         pppmme1.establecerModelo(entrada.nextLine());
                         System.out.println("Ingrese marca de celular");
@@ -159,7 +160,10 @@ public class Ejecutor {
                         break;
 
                     default:
-                        System.out.println("No existe el plan a crear");
+                        JOptionPane.showMessageDialog(null, 
+                                "No existe el plan a crear", 
+                                "Plan Celular", JOptionPane.WARNING_MESSAGE);
+                       
                 }
             }
             if (op == 2) {

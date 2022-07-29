@@ -6,7 +6,7 @@ package plancelular;
 
 /**
  *
- * @author gilbertsolanosotomayor
+ * @author jeanpa
  */
 public class PlanPostPagoMinutos extends PlanCelular{
     private double minutosNacionales;

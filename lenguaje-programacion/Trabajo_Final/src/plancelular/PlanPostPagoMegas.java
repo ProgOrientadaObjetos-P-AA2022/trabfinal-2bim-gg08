@@ -6,7 +6,7 @@ package plancelular;
 
 /**
  *
- * @author gilbertsolanosotomayor
+ * @author jeanpa
  */
 public class PlanPostPagoMegas extends PlanCelular {
 
